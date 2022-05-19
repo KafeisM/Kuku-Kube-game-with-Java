@@ -188,7 +188,6 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                 JOptionPane.showMessageDialog(null, "¡No se puede iniciar una nueva partida habiendo una en curso", "Error", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 Boolean jugar = true;
-
                 if (insercióndatos(jugar)) {
                     pv.nuevaPartida();
                     partidaCurso = true;
