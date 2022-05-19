@@ -39,6 +39,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
     private BorderLayout Layout;
 
     private int numNiveles, nivDificultad;
+    private boolean partidaCurso;
 
     public EntregaTaller2() {
         Layout = new BorderLayout(3, 10);
@@ -143,6 +144,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                 pv.nuevapantalla();
             } else {
                 JOptionPane.showMessageDialog(null, "Partida terminada", "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
+                partidaCurso = false;
             }
 
         } else {
@@ -156,6 +158,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                 pv.nuevapantalla();
             } else {
                 JOptionPane.showMessageDialog(null, "Partida terminada", "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
+                partidaCurso = false;
             }
 
         }
@@ -181,11 +184,15 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
             this.dispose(); //cierra el programa
         }
         if (e.getSource() == nuevaPartidaBoton) {
-            Boolean jugar = true;
+            if (partidaCurso) {
+                JOptionPane.showMessageDialog(null, "¡No se puede iniciar una nueva partida habiendo una en curso", "Error", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                Boolean jugar = true;
 
-            if (insercióndatos(jugar)) {
-                pv.nuevaPartida();
-                
+                if (insercióndatos(jugar)) {
+                    pv.nuevaPartida();
+                    partidaCurso = true;
+                }
             }
 
         }
