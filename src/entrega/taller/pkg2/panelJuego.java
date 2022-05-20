@@ -20,14 +20,14 @@ public class panelJuego extends JPanel {
     private Color col;
     private int R, G, B;
     private Random ran;
-    private int aux1,aux2;
+    private int aux1, aux2;
 
     public panelJuego(int dim) {
         dimensio = dim;
-        maxim = 600;
-        costat = (maxim / dimensio) - 5;
+        maxim = 500;
+        costat = (maxim / dimensio) - 3;
 
-        this.setSize(600, 600);
+        this.setSize(500, 500);
         this.setBackground(Color.white);
 
         t = new Casella[dimensio][dimensio];
@@ -47,14 +47,14 @@ public class panelJuego extends JPanel {
                 t[i][j] = c;
                 c.setOcupada(false);
 
-                x += costat + 5;
+                x += costat + 3;
             }
-            y += costat + 5;
+            y += costat + 3;
         }
 
     }
 
-    public final void generarCasilla() {
+    public final void generarCasilla(int dificultad) {
         int x, y;
         Casella c;
 
@@ -63,16 +63,86 @@ public class panelJuego extends JPanel {
         aux1 = x;
         aux2 = y;
         c = t[x][y];
-        c.cambiarColor(col.darker());
         t[x][y] = c;
         c.setOcupada(true);
+
+        switch (dificultad) {
+            case 1:
+                calculoDif(55);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 2:
+                calculoDif(50);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 3:
+                calculoDif(45);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 4:
+                calculoDif(40);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 5:
+                calculoDif(35);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 6:
+                calculoDif(30);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 7:
+                calculoDif(25);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 8:
+                calculoDif(20);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 9:
+                calculoDif(15);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+            case 10:
+                calculoDif(10);
+                col = new Color(R, G, B);
+                c.cambiarColor(col);
+                break;
+        }
     }
-    
-    public int returnX(){
+
+    private void calculoDif(int dif) {
+        R = R - dif;
+        G = G - dif;
+        B = B - dif;
+
+        if (R < 0) {
+            R = 0;
+        }
+
+        if (G < 0) {
+            G = 0;
+        }
+
+        if (B < 0) {
+            B = 0;
+        }
+    }
+
+    public int returnX() {
         return aux1;
     }
-    
-     public int returnY(){
+
+    public int returnY() {
         return aux2;
     }
 
@@ -100,7 +170,7 @@ public class panelJuego extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(800, 800);
+        return new Dimension(500, 500);
 
     }
 }

@@ -5,6 +5,7 @@
 package entrega.taller.pkg2;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,14 +28,11 @@ public class panelStandby extends JPanel {
     private ImageIcon IconGif;
 
     public panelStandby() {
-        try {
-            f = new File(fitxerImg);
-            img = ImageIO.read(f);
-        } catch (IOException ex) {
 
-        }
         IconGif = new ImageIcon(fitxerImg);
-        gifUIB = new JLabel(IconGif);
+        Image img = IconGif.getImage();
+        ImageIcon img2 = new ImageIcon(img.getScaledInstance(500, 500, Image.SCALE_DEFAULT));
+        gifUIB = new JLabel(img2);
         this.add(gifUIB);
     }
 
@@ -43,7 +41,7 @@ public class panelStandby extends JPanel {
         if (gifUIB == null) {
             return new Dimension(500, 500);
         } else {
-            return new Dimension(800,800);
+            return new Dimension(600, 600);
         }
     }
 

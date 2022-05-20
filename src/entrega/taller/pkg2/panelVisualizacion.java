@@ -16,16 +16,16 @@ public class panelVisualizacion extends JPanel {
     public panelVisualizacion() {
        psb = new panelStandby();
        
-       this.setBounds(0, 0, 600, 400);
+ 
        this.add(psb);
     }
    
-    public void nuevaPartida(){
+    public void nuevaPartida(int dificultad){
         cnt = 2;
         psb.setVisible(false);
         
         pj = new panelJuego(cnt++);
-        pj.generarCasilla();
+        pj.generarCasilla(dificultad);
         x = pj.returnX();
         y = pj.returnY();
         
@@ -34,12 +34,12 @@ public class panelVisualizacion extends JPanel {
         this.repaint();
     }
     
-    public void nuevapantalla(){
+    public void nuevapantalla(int dificultad){
         pj.setVisible(false);
         this.repaint();
         
         pj = new panelJuego(cnt++);
-        pj.generarCasilla();
+        pj.generarCasilla(dificultad);
         x = pj.returnX();
         y = pj.returnY();
 

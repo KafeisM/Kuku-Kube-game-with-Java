@@ -35,7 +35,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
 
     private BorderLayout Layout;
 
-    private int numNiveles, nivDificultad;
+    private int numNiveles, nivDificultad, puntuacion, nivActual;
     private boolean partidaCurso;
 
     public EntregaTaller2() {
@@ -48,7 +48,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
 
         //pb = new panelBotones();
         this.setTitle("KukuKube");
-        this.setSize(600, 600);
+        this.setSize(500, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(EntregaTaller2.EXIT_ON_CLOSE);
@@ -138,9 +138,12 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
 
         if (c.estaOcupada()) {
             if (pv.getNivel() <= numNiveles + 1) {
-                pv.nuevapantalla();
+                puntuacion = puntuacion + (nivActual + 1);
+                nivActual++;
+                pv.nuevapantalla(nivDificultad);
             } else {
-                JOptionPane.showMessageDialog(null, "Partida terminada", "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
+                puntuacion = puntuacion + (nivActual + 1);
+                JOptionPane.showMessageDialog(null, "Partida terminada con un total de " + puntuacion + " puntos" , "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
                 partidaCurso = false;
             }
 
@@ -153,7 +156,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                 pv.repaint();
 
                 JOptionPane.showMessageDialog(null, "CUADRADO SELECCIONADO ERRONEO", "FALLO", JOptionPane.ERROR_MESSAGE);
-                pv.nuevapantalla();
+                pv.nuevapantalla(nivDificultad);
             } else {
                 JOptionPane.showMessageDialog(null, "Partida terminada", "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
                 partidaCurso = false;
@@ -187,8 +190,10 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
             } else {
                 Boolean jugar = true;
                 if (insercióndatos(jugar)) {
-                    pv.nuevaPartida();
+                    pv.nuevaPartida(nivDificultad);
                     partidaCurso = true;
+                    puntuacion = 0;
+                    nivActual = 1;
                 }
             }
 

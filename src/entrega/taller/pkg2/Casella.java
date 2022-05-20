@@ -45,7 +45,7 @@ public class Casella {
         g2d.setColor(this.col);
         g2d.fill(this.rec); // Fills the interior of a Shape using the settings of the Graphics2D context
         g2d.setColor(borde);
-        g2d.setStroke(new BasicStroke(5));
+        g2d.setStroke(new BasicStroke(3));
         g2d.draw(rec);
  
     }
