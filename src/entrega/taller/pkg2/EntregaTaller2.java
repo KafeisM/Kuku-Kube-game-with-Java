@@ -24,7 +24,6 @@ import javax.swing.JSplitPane;
  */
 public class EntregaTaller2 extends JFrame implements MouseListener, ActionListener {
 
-    private JSplitPane separador;
     private JMenuBar barraMenu;
     private JMenu menu;
     private JMenuItem nuevaPartidaMenu, salirMenu;
@@ -36,7 +35,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
     private BorderLayout Layout;
 
     private int numNiveles, nivDificultad, puntuacion, nivActual;
-    private boolean partidaCurso;
+    private boolean partidaCurso, anteriorFin;
 
     public EntregaTaller2() {
         Layout = new BorderLayout(3, 10);
@@ -120,6 +119,12 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        //si la partida esta finalizada el usuario no podra clickar en el tablero
+        if(partidaCurso == false){
+            return;
+        }
+        
+        //saber la poscion donde se ha dado click
         int x = 0, y = 0, i, j = 0;
         int aux1, aux2;
         x = e.getX();
@@ -132,10 +137,11 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
         }
         i--;
         j--;
-
-        System.out.println("Click posicio " + i + "," + j);
+        
+        //cojer esa casilla
         Casella c = pv.cojerCasilla(i, j);
-
+        
+        //hacer las operaciones correspondientes dependiendo si es la diferente, o no
         if (c.estaOcupada()) {
             if (pv.getNivel() <= numNiveles + 1) {
                 puntuacion = puntuacion + (nivActual + 1);
@@ -145,6 +151,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                 puntuacion = puntuacion + (nivActual + 1);
                 JOptionPane.showMessageDialog(null, "Partida terminada con un total de " + puntuacion + " puntos" , "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
                 partidaCurso = false;
+                anteriorFin = true;
             }
 
         } else {
@@ -158,8 +165,14 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                 JOptionPane.showMessageDialog(null, "CUADRADO SELECCIONADO ERRONEO", "FALLO", JOptionPane.ERROR_MESSAGE);
                 pv.nuevapantalla(nivDificultad);
             } else {
-                JOptionPane.showMessageDialog(null, "Partida terminada", "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
+                c.cambiarBorde(Color.red);
+                
+                c = pv.cojerCasilla(pv.casillaX(), pv.casillaY());
+                c.cambiarBorde(Color.green);
+                pv.repaint();
+                JOptionPane.showMessageDialog(null, "Partida terminada con un total de " + puntuacion + " puntos" , "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
                 partidaCurso = false;
+                anteriorFin = true;
             }
 
         }
@@ -189,6 +202,9 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                 JOptionPane.showMessageDialog(null, "¡No se puede iniciar una nueva partida habiendo una en curso", "Error", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 Boolean jugar = true;
+                if(anteriorFin){
+                    pv.acabarPartida();
+                }
                 if (insercióndatos(jugar)) {
                     pv.nuevaPartida(nivDificultad);
                     partidaCurso = true;

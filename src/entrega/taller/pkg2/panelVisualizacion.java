@@ -47,6 +47,11 @@ public class panelVisualizacion extends JPanel {
         this.repaint();
     }
     
+    public void acabarPartida(){
+        pj.setVisible(false);
+        psb.setVisible(true);
+    }
+    
     public int casillaX(){
         return x;
     }
