@@ -24,10 +24,10 @@ public class panelJuego extends JPanel {
 
     public panelJuego(int dim) {
         dimensio = dim;
-        maxim = 800;
+        maxim = 600;
         costat = (maxim / dimensio) - 5;
 
-        this.setSize(800, 800);
+        this.setSize(600, 600);
         this.setBackground(Color.white);
 
         t = new Casella[dimensio][dimensio];

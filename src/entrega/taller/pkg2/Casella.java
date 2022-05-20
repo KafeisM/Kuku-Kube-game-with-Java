@@ -1,6 +1,7 @@
 
 package entrega.taller.pkg2;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -44,7 +45,9 @@ public class Casella {
         g2d.setColor(this.col);
         g2d.fill(this.rec); // Fills the interior of a Shape using the settings of the Graphics2D context
         g2d.setColor(borde);
+        g2d.setStroke(new BasicStroke(5));
         g2d.draw(rec);
+ 
     }
     
     public Rectangle2D.Float getRec() {

@@ -9,11 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Rectangle2D;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -51,7 +48,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
 
         //pb = new panelBotones();
         this.setTitle("KukuKube");
-        this.setSize(800, 900);
+        this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(EntregaTaller2.EXIT_ON_CLOSE);
@@ -150,8 +147,9 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
         } else {
             if (pv.getNivel() <= numNiveles + 1) {
                 c.cambiarBorde(Color.red);
-                Casella aux = pv.cojerCasilla(pv.getX(), pv.getY());
-                aux.cambiarBorde(Color.green);
+                
+                c = pv.cojerCasilla(pv.casillaX(), pv.casillaY());
+                c.cambiarBorde(Color.green);
                 pv.repaint();
 
                 JOptionPane.showMessageDialog(null, "CUADRADO SELECCIONADO ERRONEO", "FALLO", JOptionPane.ERROR_MESSAGE);

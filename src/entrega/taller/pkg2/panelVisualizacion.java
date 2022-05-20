@@ -11,11 +11,12 @@ public class panelVisualizacion extends JPanel {
     private panelStandby psb;
     private panelJuego pj;
     private static int cnt;
+    private int x,y;
 
     public panelVisualizacion() {
        psb = new panelStandby();
        
-       this.setBounds(0, 0, 800, 800);
+       this.setBounds(0, 0, 600, 400);
        this.add(psb);
     }
    
@@ -25,6 +26,9 @@ public class panelVisualizacion extends JPanel {
         
         pj = new panelJuego(cnt++);
         pj.generarCasilla();
+        x = pj.returnX();
+        y = pj.returnY();
+        
         pj.repaint();
         this.add(pj);
         this.repaint();
@@ -36,8 +40,19 @@ public class panelVisualizacion extends JPanel {
         
         pj = new panelJuego(cnt++);
         pj.generarCasilla();
+        x = pj.returnX();
+        y = pj.returnY();
+
         this.add(pj);
         this.repaint();
+    }
+    
+    public int casillaX(){
+        return x;
+    }
+    
+    public int casillaY(){
+        return y;
     }
     
     public int getNivel(){
