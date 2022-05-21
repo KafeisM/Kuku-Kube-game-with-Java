@@ -3,6 +3,7 @@ package entrega.taller.pkg2;
 import java.awt.BorderLayout;
 import static java.awt.BorderLayout.*;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,12 +12,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
 
 /**
  *
@@ -30,7 +31,6 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
     private JButton nuevaPartidaBoton, salirBoton;
 
     private panelVisualizacion pv;
-    private panelJuego pj;
 
     private BorderLayout Layout;
 
@@ -100,7 +100,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
         panelBotones.add(salirBoton);
 
         add(panelBotones, SOUTH);
-
+        
     }
 
     public static void main(String[] args) {
@@ -198,7 +198,16 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
             this.dispose(); //cierra el programa
         }
         if (e.getSource() == nuevaPartidaBoton) {
-            if (partidaCurso) {
+            iniciarPartida();
+        }
+        if(e.getSource() == nuevaPartidaMenu){
+           iniciarPartida();
+        }
+
+    }
+    
+    private void iniciarPartida(){
+        if (partidaCurso) {
                 JOptionPane.showMessageDialog(null, "¡No se puede iniciar una nueva partida habiendo una en curso", "Error", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 Boolean jugar = true;
@@ -212,9 +221,6 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                     nivActual = 1;
                 }
             }
-
-        }
-
     }
 
     private Boolean insercióndatos(boolean aux) {
