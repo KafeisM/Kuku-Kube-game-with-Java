@@ -31,23 +31,30 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
     private JButton nuevaPartidaBoton, salirBoton;
 
     private panelVisualizacion pv;
+    private panelInfo pi;
 
     private BorderLayout Layout;
 
-    private int numNiveles, nivDificultad, puntuacion, nivActual;
+    private int numNiveles, nivDificultad, puntuacion, nivActual, nivRes;
     private boolean partidaCurso, anteriorFin;
 
     public EntregaTaller2() {
-        Layout = new BorderLayout(3, 10);
+        Layout = new BorderLayout();
         setLayout(Layout);
 
         //Configurar y mostrar JFrame
         pv = new panelVisualizacion();
         this.add(pv, CENTER);
+        
+        pi = new panelInfo();
+        this.add(pi,NORTH);
+        pi.setVisible(true);
+        
+        
 
         //pb = new panelBotones();
         this.setTitle("KukuKube");
-        this.setSize(500, 600);
+        this.setSize(500, 700);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(EntregaTaller2.EXIT_ON_CLOSE);
@@ -146,9 +153,12 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
             if (pv.getNivel() <= numNiveles + 1) {
                 puntuacion = puntuacion + (nivActual + 1);
                 nivActual++;
+                nivRes =numNiveles - nivActual;
                 pv.nuevapantalla(nivDificultad);
+                pi.actValores(numNiveles, nivActual, nivRes, puntuacion);
             } else {
                 puntuacion = puntuacion + (nivActual + 1);
+                pi.actValores(numNiveles, nivActual, nivRes, puntuacion);
                 JOptionPane.showMessageDialog(null, "Partida terminada con un total de " + puntuacion + " puntos" , "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
                 partidaCurso = false;
                 anteriorFin = true;
@@ -156,6 +166,9 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
 
         } else {
             if (pv.getNivel() <= numNiveles + 1) {
+                nivActual++;
+                nivRes =numNiveles - nivActual;
+                
                 c.cambiarBorde(Color.red);
                 
                 c = pv.cojerCasilla(pv.casillaX(), pv.casillaY());
@@ -164,12 +177,16 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
 
                 JOptionPane.showMessageDialog(null, "CUADRADO SELECCIONADO ERRONEO", "FALLO", JOptionPane.ERROR_MESSAGE);
                 pv.nuevapantalla(nivDificultad);
+                pi.actValores(numNiveles, nivActual, nivRes, puntuacion);
             } else {
                 c.cambiarBorde(Color.red);
                 
                 c = pv.cojerCasilla(pv.casillaX(), pv.casillaY());
                 c.cambiarBorde(Color.green);
                 pv.repaint();
+                
+                pi.actValores(numNiveles, nivActual, nivRes, puntuacion);
+                
                 JOptionPane.showMessageDialog(null, "Partida terminada con un total de " + puntuacion + " puntos" , "Fin de partida", JOptionPane.INFORMATION_MESSAGE);
                 partidaCurso = false;
                 anteriorFin = true;
@@ -219,6 +236,8 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
                     partidaCurso = true;
                     puntuacion = 0;
                     nivActual = 1;
+                    nivRes = numNiveles-nivActual;
+                    pi.actValores(numNiveles, nivActual, nivRes, puntuacion);
                 }
             }
     }

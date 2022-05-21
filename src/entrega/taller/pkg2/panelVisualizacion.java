@@ -15,8 +15,7 @@ public class panelVisualizacion extends JPanel {
 
     public panelVisualizacion() {
        psb = new panelStandby();
-       
- 
+
        this.add(psb);
     }
    
