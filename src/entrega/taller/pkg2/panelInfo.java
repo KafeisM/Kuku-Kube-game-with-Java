@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entrega.taller.pkg2;
 
 import java.awt.Color;
@@ -17,7 +13,7 @@ import javax.swing.JPanel;
 public class panelInfo extends JPanel {
     
     private JLabel nivelPartida, nivelPartidaN, nivelActual, nivelActualN, nivelesRestantes, nivelesRestantesN, puntuacion, puntuacionN;
-    private Integer nPart, nAct, nRest, nPunt;
+    private Integer numPart, numAct, numRest, puntos;
     private Font Fuente;
     
     public panelInfo() {
@@ -97,11 +93,12 @@ public class panelInfo extends JPanel {
     
     
     public void actValores(int nPart, int nAct, int nRest, int nPunt) {
-        this.nPart = nPart;
-        this.nAct = nAct;
-        this.nRest = nRest;
-        this.nPunt = nPunt;
+        this.numPart = nPart;
+        this.numAct = nAct;
+        this.numRest = nRest;
+        this.puntos = nPunt;
  
+        //dependiendo de la longitud se necesita sumar 1 o 2
         String res = Integer.toString(nPart);
         if (res.length() == 1) {
             nivelPartidaN.setText("00" + res);

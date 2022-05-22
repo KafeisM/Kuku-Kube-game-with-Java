@@ -3,7 +3,6 @@ package entrega.taller.pkg2;
 import java.awt.BorderLayout;
 import static java.awt.BorderLayout.*;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,7 +11,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -146,7 +144,7 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
         j--;
         
         //cojer esa casilla
-        Casella c = pv.cojerCasilla(i, j);
+        Casilla c = pv.cojerCasilla(i, j);
         
         //hacer las operaciones correspondientes dependiendo si es la diferente, o no
         if (c.estaOcupada()) {
@@ -244,8 +242,8 @@ public class EntregaTaller2 extends JFrame implements MouseListener, ActionListe
 
     private Boolean insercióndatos(boolean aux) {
         try {
-            String niveles = JOptionPane.showInputDialog(this, "Números de niveles", "Configuración de la partida", JOptionPane.QUESTION_MESSAGE);
-            String dificultad = JOptionPane.showInputDialog(this, "Dificultad de la partida", "Configuración de la partida", JOptionPane.QUESTION_MESSAGE);
+            String niveles = JOptionPane.showInputDialog(this, "Números de niveles (1-10)", "Configuración de la partida", JOptionPane.QUESTION_MESSAGE);
+            String dificultad = JOptionPane.showInputDialog(this, "Dificultad de la partida (1-10)", "Configuración de la partida", JOptionPane.QUESTION_MESSAGE);
 
             numNiveles = Integer.parseInt(niveles);
             nivDificultad = Integer.parseInt(dificultad);

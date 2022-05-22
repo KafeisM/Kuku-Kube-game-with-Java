@@ -13,53 +13,53 @@ import javax.swing.JPanel;
  */
 public class panelJuego extends JPanel {
 
-    private static int dimensio;
-    private static int maxim;
-    private static int costat;
-    private Casella t[][];
+    private static int dimension;
+    private static int maximo;
+    private static int lado;
+    private Casilla t[][];
     private Color col;
     private int R, G, B;
     private Random ran;
     private int aux1, aux2;
 
     public panelJuego(int dim) {
-        dimensio = dim;
-        maxim = 500;
-        costat = (maxim / dimensio) - 3;
+        dimension = dim;
+        maximo = 500;
+        lado = (maximo / dimension) - 3;
 
         this.setSize(500, 500);
         this.setBackground(Color.white);
 
-        t = new Casella[dimensio][dimensio];
-        Casella c;
+        t = new Casilla[dimension][dimension];
+        Casilla c;
         ran = new Random();
         R = ran.nextInt(256);
         G = ran.nextInt(256);
         B = ran.nextInt(256);
 
         int y = 0;
-        for (int i = 0; i < dimensio; i++) {
+        for (int i = 0; i < dimension; i++) {
             int x = 0;
-            for (int j = 0; j < dimensio; j++) {
+            for (int j = 0; j < dimension; j++) {
                 col = new Color(R, G, B);
-                Rectangle2D.Float r = new Rectangle2D.Float(x, y, costat, costat);
-                c = new Casella(r, col);
+                Rectangle2D.Float r = new Rectangle2D.Float(x, y, lado, lado);
+                c = new Casilla(r, col);
                 t[i][j] = c;
                 c.setOcupada(false);
 
-                x += costat + 3;
+                x += lado + 3;
             }
-            y += costat + 3;
+            y += lado + 3;
         }
 
     }
 
     public final void generarCasilla(int dificultad) {
         int x, y;
-        Casella c;
+        Casilla c;
 
-        x = ran.nextInt(dimensio);
-        y = ran.nextInt(dimensio);
+        x = ran.nextInt(dimension);
+        y = ran.nextInt(dimension);
         aux1 = x;
         aux2 = y;
         c = t[x][y];
@@ -146,23 +146,22 @@ public class panelJuego extends JPanel {
         return aux2;
     }
 
-    public static int getDimensio() {
-        return dimensio;
+    public static int getDimension() {
+        return dimension;
     }
 
-    public Casella getCasella(int i, int j) {
+    public Casilla getCasella(int i, int j) {
         return t[i][j];
     }
 
     public boolean click(int i, int j, int x, int y) {
         return t[i][j].getRec().contains(x, y);
-        //comprova si unes coordenades estan dins de la figura, si es aixi retorna true
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        for (int i = 0; i < dimensio; i++) {
-            for (int j = 0; j < dimensio; j++) {
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
                 t[i][j].paintComponent(g); //pintar les caselles
             }
         }

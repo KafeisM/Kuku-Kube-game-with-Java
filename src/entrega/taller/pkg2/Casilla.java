@@ -11,13 +11,13 @@ import java.awt.geom.Rectangle2D;
  *
  * @author jordi
  */
-public class Casella {
+public class Casilla {
     private Rectangle2D.Float rec;
     private Color col;
     private Color borde;
     private Boolean ocupada;
     
-    public Casella(Rectangle2D.Float r, Color c){
+    public Casilla(Rectangle2D.Float r, Color c){
         col = c;
         rec = r;   
         borde = Color.white;

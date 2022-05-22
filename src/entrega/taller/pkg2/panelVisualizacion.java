@@ -65,7 +65,7 @@ public class panelVisualizacion extends JPanel {
     
     public int dimensionTablero(){
         int aux;
-        aux = pj.getDimensio();
+        aux = pj.getDimension();
         return aux;
     }
     
@@ -74,8 +74,8 @@ public class panelVisualizacion extends JPanel {
         return aux;
     }
     
-    public Casella cojerCasilla(int i, int j){
-        Casella aux = pj.getCasella(i, j);
+    public Casilla cojerCasilla(int i, int j){
+        Casilla aux = pj.getCasella(i, j);
         return aux;
     }
     
